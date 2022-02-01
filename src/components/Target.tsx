@@ -8,7 +8,11 @@ type targetPositon =
   | "topleft"
   | "center";
 
-const Target: React.FC = () => {
+interface IProps {
+  setmessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Target: React.FC<IProps> = ({ setmessage }) => {
   const [targetPosition, setTargetPosition] =
     useState<targetPositon>("topright");
 
@@ -25,7 +29,9 @@ const Target: React.FC = () => {
   };
   return (
     <TargetBody onMouseEnter={evadeHandler} position={targetPosition}>
-      <MainTarget />
+      <MainTarget
+        onMouseEnter={() => setmessage("congratulations,you won!!")}
+      />
     </TargetBody>
   );
 };
