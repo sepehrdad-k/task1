@@ -13,7 +13,7 @@ const Curser: React.FC = () => {
     return () => {
       document.removeEventListener("mousemove", curserPositionHandler);
     };
-  });
+  }, []);
 
   return <PageCurser x={curserLeft} y={curserTop} />;
 };
@@ -26,6 +26,8 @@ const PageCurser = styled.div<{ x: string; y: string }>`
   border-radius: 50%;
   background-color: green;
   position: fixed;
+  pointer-events: none;
+  z-index: 10;
   top: ${({ y }) =>
     css`
       ${y}
